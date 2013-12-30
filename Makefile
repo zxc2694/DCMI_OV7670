@@ -22,6 +22,7 @@ CFLAGS+=-D USE_STDPERIPH_DRIVER\
 
 CFLAGS+=-I./
 CFLAGS+=-I./program/
+CFLAGS+=-I./Libraries/STM3240_EVAL/
 
 #Flash
 CFLAGS+=-Wl,-T,stm32_flash.ld
@@ -32,15 +33,27 @@ CFLAGS+=-Wl,-T,stm32_flash.ld
 #Stm32 libraries
 ST_LIB=./Libraries/STM32F4xx_StdPeriph_Driver
 
+#STM3240_EVAL
+EVAL=./Libraries/STM3240_EVAL
+
 #CMSIS libraries
 CFLAGS+=-I./Libraries/CMSIS/
 
 #StdPeriph includes
 CFLAGS+=-I$(ST_LIB)/inc
 
+
 #======================================================================#
 #Source code
 SRC=./Libraries/CMSIS/system_stm32f4xx.c
+
+#STM3240_EVAL
+SRC+=$(EVAL)/fonts.c \
+		$(EVAL)/lcd_log.c \
+		$(EVAL)/stm324xg_eval.c \
+		$(EVAL)/stm324xg_eval_audio_codec.c \
+		$(EVAL)/stm324xg_eval_lcd.c 
+
 
 #StdPeriph
 SRC+=$(ST_LIB)/src/misc.c \
@@ -53,7 +66,7 @@ SRC+=$(ST_LIB)/src/misc.c \
         $(ST_LIB)/src/stm32f4xx_spi.c \
         $(ST_LIB)/src/stm32f4xx_i2c.c \
         $(ST_LIB)/src/stm32f4xx_sdio.c \
-        $(ST_LIB)/src/stm32f4xx_dcmi.c
+        $(ST_LIB)/src/stm32f4xx_dcmi.c 
 
 #Major programs
 SRC+=./program/Camera_OV7670.c \
