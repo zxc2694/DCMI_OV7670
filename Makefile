@@ -62,8 +62,9 @@ SRC+=./program/Camera_OV7670.c \
         ./program/camera_api.c \
         ./program/ov7670_config.c \
         ./program/sccb_config.c \
-	./program/stm32f4xx_it.c \
-	./program/main.c
+		./program/stm32f4xx_it.c \
+		./program/stm324xg_eval.c \
+		./program/main.c 
 
 LDFLAGS+=-lm -lc -lgcc
 
